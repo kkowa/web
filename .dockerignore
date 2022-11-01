@@ -1,0 +1,23 @@
+**
+
+# Allowed things
+!config/**
+!idl/grpc/generated/node/**
+!public/**
+!scripts/**
+!src/**
+!next.config.js
+!package.json
+!tsconfig.json
+!yarn.lock
+!*.secret
+!next-env.d.ts
+!type.d.ts
+
+# Extra exclude from allowed things
+**/*~
+**/*.log
+**/.DS_Store
+**/Thumbs.db
+**/*.test.*
+**/*.md

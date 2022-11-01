@@ -1,0 +1,20 @@
+version: "3"
+
+volumes:
+  node_modules: {}
+
+services:
+  web:
+    image: localhost:5000/kkowa/apps/web:local
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      target: development
+    volumes:
+      - .:/var/app:z
+      - node_modules:/var/app/node_modules
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: "development"
+    command: yarn dev

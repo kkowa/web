@@ -1,0 +1,56 @@
+{
+  "files.eol": "\n",
+  "files.associations": {
+    ".devcontainer/override.yml": "dockercompose",
+    "**/chart/templates/{**,*}.{yaml,yml,tpl}": "helm",
+    "**/chart/templates/NOTES.txt": "helm",
+    "**/chart/*.yaml": "yaml"
+  },
+  "files.insertFinalNewline": true,
+  //
+  // Formatting
+  // ------------------------------------------------------------------------
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true,
+    "source.organizeImports": true
+  },
+  "prettier.enable": true,
+  "prettier.prettierPath": "${workspaceFolder}/node_modules/.bin/prettier",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[javascript][javascriptreact][typescript][typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "eslint.enable": true,
+  "eslint.format.enable": true,
+  "yaml.format.enable": true,
+  "yaml.schemas": {
+    "chart/values.schema.json": "chart/values.yaml"
+  },
+  "[helm]": {
+    "editor.formatOnSave": false
+  },
+  "[dockercompose]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "typescript.format.enable": true,
+  //
+  // Linting
+  // ------------------------------------------------------------------------
+  // cspell
+  "cSpell.words": [
+    "cobertura",
+    "jsonschema",
+    "kkowa",
+    "kubernetes",
+    "nextjs",
+    "PINENTRY"
+  ]
+  //
+  // Testing
+  // -----------------------------------------------------------------------
+  // ...
+}

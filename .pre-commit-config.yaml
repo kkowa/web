@@ -1,0 +1,56 @@
+exclude: ".git|idl|node_modules|coverage"
+default_stages: [commit]
+fail_fast: true
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.3.0
+    hooks:
+      - id: trailing-whitespace
+        exclude: .*\.snap$
+      - id: end-of-file-fixer
+        exclude: .*\*.snap$
+      - id: check-yaml
+        exclude: ^chart/templates
+
+  - repo: https://gitlab.com/bmares/check-json5
+    rev: v1.0.0
+    hooks:
+      - id: check-json5
+
+  - repo: https://github.com/sirosen/check-jsonschema
+    rev: 0.18.3
+    hooks:
+      - id: check-jsonschema
+        files: chart/values.yaml
+        args: ["--schemafile", "./chart/values.schema.json"]
+
+  - repo: local
+    hooks:
+      - id: prettier
+        name: Format with Prettier
+        language: system
+        types_or: [javascript, jsx, ts, tsx, json]
+        entry: yarn run prettier
+        args: [--write]
+
+      - id: eslint
+        name: Lint with ESLint
+        language: system
+        types_or: [javascript, jsx, ts, tsx]
+        entry: yarn run eslint
+        args: [--fix]
+
+      - id: typescript
+        name: Type check with TypeScript
+        language: system
+        types_or: [javascript, jsx, ts, tsx]
+        pass_filenames: false
+        entry: yarn run tsc
+        args: [--noEmit]
+
+      - id: jest
+        name: Run tests with Jest
+        language: system
+        types_or: [javascript, jsx, ts, tsx]
+        pass_filenames: false
+        entry: yarn test
