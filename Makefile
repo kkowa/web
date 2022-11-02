@@ -17,7 +17,8 @@ help: Makefile
 # Common
 # =============================================================================
 install:  ## Install the app locally
-	yarn
+	command -v nodenv > /dev/null && nodenv install --skip-existing "$$(nodenv local)"
+	yarn install
 .PHONY: install
 
 init:  ## Initialize project repository
@@ -53,7 +54,7 @@ benchmark:  ## Run benchmarks
 .PHONY: benchmark
 
 test:  ## Run tests
-	yarn test
+	yarn test:ci
 .PHONY: test
 
 scan:  ## Run all scans
