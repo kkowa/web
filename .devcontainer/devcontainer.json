@@ -1,8 +1,8 @@
 {
-  "name": "kkowa/apps/web",
+  "name": "kkowa/web",
   "dockerComposeFile": ["../docker-compose.yml", "./override.yml"],
-  "runServices": ["web"],
-  "service": "web",
+  "runServices": ["app"],
+  "service": "app",
   "overrideCommand": true,
   "initializeCommand": "sh ./.devcontainer/initializeCommand.sh",
   "onCreateCommand": "sh ./.devcontainer/onCreateCommand.sh",
