@@ -1,4 +1,11 @@
-exclude: ".git|idl|node_modules|coverage"
+exclude: |
+  (?x)(
+    ^idl/
+    | ^node_modules/
+    | ^coverage/
+    | \.snap$
+  )
+
 default_stages: [commit]
 fail_fast: true
 repos:
@@ -6,15 +13,7 @@ repos:
     rev: v4.3.0
     hooks:
       - id: trailing-whitespace
-        exclude: .*\.snap$
       - id: end-of-file-fixer
-        exclude: .*\*.snap$
-      - id: check-yaml
-
-  - repo: https://gitlab.com/bmares/check-json5
-    rev: v1.0.0
-    hooks:
-      - id: check-json5
 
   - repo: local
     hooks:
