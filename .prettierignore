@@ -1,4 +1,5 @@
 .next/
+idl/
 node_modules/
 coverage/
 *.snap
