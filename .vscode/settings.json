@@ -1,10 +1,7 @@
 {
   "files.eol": "\n",
   "files.associations": {
-    ".devcontainer/override.yml": "dockercompose",
-    "**/chart/templates/{**,*}.{yaml,yml,tpl}": "helm",
-    "**/chart/templates/NOTES.txt": "helm",
-    "**/chart/*.yaml": "yaml"
+    ".devcontainer/override.yml": "dockercompose"
   },
   "files.insertFinalNewline": true,
   //
@@ -27,9 +24,6 @@
   "eslint.enable": true,
   "eslint.format.enable": true,
   "yaml.format.enable": true,
-  "yaml.schemas": {
-    "chart/values.schema.json": "chart/values.yaml"
-  },
   "[helm]": {
     "editor.formatOnSave": false
   },
