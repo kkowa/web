@@ -1,7 +1,7 @@
 version: "3"
 
 services:
-  web:
+  app:
     user: root:root
     healthcheck:
       disable: true

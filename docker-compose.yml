@@ -4,8 +4,8 @@ volumes:
   node_modules: {}
 
 services:
-  web:
-    image: localhost:5000/kkowa/apps/web:local
+  app:
+    image: localhost:5000/kkowa/web:local
     build:
       context: .
       dockerfile: ./Dockerfile
