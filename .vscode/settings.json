@@ -3,6 +3,9 @@
   "files.associations": {
     ".devcontainer/override.yml": "dockercompose"
   },
+  "files.exclude": {
+    "node_modules": true
+  },
   "files.insertFinalNewline": true,
   //
   // Formatting
@@ -16,6 +19,10 @@
   "prettier.prettierPath": "${workspaceFolder}/node_modules/.bin/prettier",
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "[javascript][javascriptreact][typescript][typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  // FIXME: [json][jsonc] not working
+  "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[jsonc]": {
