@@ -18,9 +18,9 @@ ENV NODE_ENV="production"
 SHELL ["/bin/bash", "-c"]
 
 # Install core tools
-RUN apt-get update && apt-get install --no-install-recommends -y \
+RUN apt update && apt install --no-install-recommends -y \
     curl \
-    && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
+    && apt purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
     && rm -rf /var/lib/apt/lists/*
 
 # Set default working directory
@@ -77,13 +77,13 @@ ARG APP_HOME
 VOLUME ["${APP_HOME}/node_modules"]
 
 # Install dev tools
-RUN apt-get update && apt-get install --no-install-recommends -y \
+RUN apt update && apt install --no-install-recommends -y \
     curl \
     git \
     gnupg2 \
     make \
     python3-pip \
-    && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
+    && apt purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
     && rm -rf /var/lib/apt/lists/*
 
 # Install pre-commit
@@ -97,10 +97,8 @@ RUN rm -rf ${HOME}/.gnupg
 COPY --from=build /tmp/build/node_modules ./node_modules
 COPY --from=build /tmp/build/.next ./.next
 
-# Copy script files implicitly
-COPY --chown=worker:worker --chmod=755 \
-    ./scripts/docker-entrypoint.sh ./scripts/start.sh \
-    /usr/local/bin/
+# Copy script files to executable path
+COPY --chown=worker:worker --chmod=755 ./scripts/* /usr/local/bin/
 
 USER worker:worker
 
@@ -115,9 +113,7 @@ RUN yarn install --frozen-lockfile && yarn cache clean --force
 # Copy generated build outputs
 COPY --from=build /tmp/build/.next ./.next
 
-# Copy script files implicitly
-COPY --chown=worker:worker --chmod=755 \
-    ./scripts/docker-entrypoint.sh ./scripts/start.sh \
-    /usr/local/bin/
+# Copy script files to executable path
+COPY --chown=worker:worker --chmod=755 ./scripts/* /usr/local/bin/
 
 USER worker:worker
