@@ -24,15 +24,15 @@ RUN apt update && apt install --no-install-recommends -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Set default working directory
-WORKDIR ${APP_HOME}
+WORKDIR "${APP_HOME}"
 
 # Remove user / group "node" from base image
 RUN groupdel -f node && userdel -fr node
 
 # Create app user and set as app owner
-RUN groupadd --gid ${GID} worker \
-    && useradd  --system --uid ${UID} --gid ${GID} --create-home worker \
-    && chown -R worker:worker ${APP_HOME} /home/worker
+RUN groupadd --gid "${GID}" worker \
+    && useradd  --system --uid "${UID}" --gid "${GID}" --create-home worker \
+    && chown -R worker:worker "${APP_HOME}" /home/worker
 
 # Copy source codes
 COPY --chown=worker:worker . .
@@ -91,7 +91,7 @@ RUN pip3 install --upgrade pip && pip install pre-commit
 
 # Remove existing GPG setup from base image for VSC devcontainer
 # NOTE: Seems VSC devcontainer not forwarding host GPG config if already exists in container
-RUN rm -rf ${HOME}/.gnupg
+RUN rm -rf "${HOME}/.gnupg"
 
 # Copy from build stage
 COPY --from=build /tmp/build/node_modules ./node_modules
