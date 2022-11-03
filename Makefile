@@ -49,10 +49,6 @@ lint:  ## Run all linters
 	yarn run tsc --noEmit
 .PHONY: lint
 
-benchmark:  ## Run benchmarks
-
-.PHONY: benchmark
-
 test:  ## Run tests
 	yarn test:ci
 .PHONY: test
