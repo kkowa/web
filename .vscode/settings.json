@@ -31,9 +31,6 @@
   "eslint.enable": true,
   "eslint.format.enable": true,
   "yaml.format.enable": true,
-  "[helm]": {
-    "editor.formatOnSave": false
-  },
   "[dockercompose]": {
     "editor.defaultFormatter": "redhat.vscode-yaml"
   },
