@@ -38,6 +38,10 @@ run:  ## Run development server
 ci: lint test scan  ## Run CI tasks
 .PHONY: ci
 
+generate:  ## Generate codes from schemas
+	yarn generate
+.PHONY: generate
+
 format:  ## Run autoformatters
 	yarn run prettier --list-different --write .
 	yarn run eslint --fix .

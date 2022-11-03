@@ -1,11 +1,11 @@
 exclude: |
   (?x)(
-    ^idl/
-    | ^node_modules/
+    ^_generated/
     | ^coverage/
+    | ^idl/
+    | ^node_modules/
     | \.snap$
   )
-
 default_stages: [commit]
 fail_fast: true
 repos:
@@ -14,6 +14,18 @@ repos:
     hooks:
       - id: trailing-whitespace
       - id: end-of-file-fixer
+
+  - repo: local
+    hooks:
+      - id: generate
+        name: Generate codes from schemas
+        language: system
+        files: |
+          (?x)(
+            ^idl/graphql/schemas/.*$
+          )
+        pass_filenames: false
+        entry: make generate
 
   - repo: local
     hooks:
