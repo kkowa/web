@@ -187,7 +187,7 @@ export type User = Node & {
   lastModified: Scalars['DateTime'];
   /** User's real name. */
   name: Scalars['String'];
-  /** 150자 이하 문자, 숫자 그리고 @/./+/-/_만 가능합니다. */
+  /** Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only. */
   username: Scalars['String'];
 };
 
@@ -200,10 +200,10 @@ export type UserFoldersArgs = {
   last?: InputMaybe<Scalars['Int']>;
 };
 
-export type AboutMeQueryVariables = Exact<{ [key: string]: never; }>;
+export type AboutMeQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type AboutMeQuery = { __typename?: 'Query', userSelf: { __typename?: 'User', id: any, username: string, name: string } };
+export type AboutMeQueryQuery = { __typename?: 'Query', userSelf: { __typename?: 'User', username: string, name: string } };
 
 
-export const AboutMeDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"aboutMe"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"userSelf"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]} as unknown as DocumentNode<AboutMeQuery, AboutMeQueryVariables>;
+export const AboutMeQueryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"aboutMeQuery"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"userSelf"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]} as unknown as DocumentNode<AboutMeQueryQuery, AboutMeQueryQueryVariables>;

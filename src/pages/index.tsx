@@ -1,9 +1,34 @@
+import { graphql } from "@/generated/graphql/server/gql";
+import { useQuery } from "@tanstack/react-query";
+import request from "graphql-request";
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
 
+const aboutMe = graphql(`
+  query aboutMeQuery {
+    userSelf {
+      username
+      name
+    }
+  }
+`);
+
 const Home: NextPage = () => {
+  const { data } = useQuery({
+    queryKey: ["aboutMe"],
+    queryFn: async () =>
+      request(
+        "http://localhost:8000/graphql",
+        aboutMe,
+        {},
+        {
+          Authorization: "Bearer ZzrBSsLjPi93vl3FTnpRMIVg1jA",
+        }
+      ),
+  });
+
   return (
     <div className={styles.container}>
       <Head>
@@ -16,9 +41,9 @@ const Home: NextPage = () => {
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
-
         <p className={styles.description}>
-          Get started by editing{" "}
+          Nice to meet you, {data?.userSelf.username || "User"}!<br />
+          Get started by editing
           <code className={styles.code}>pages/index.tsx</code>
         </p>
 
