@@ -21,13 +21,51 @@ on:
       - "**.md"
 
 jobs:
-  build-test-push:
+  lint-and-test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Docker meta
+      - name: Set up Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: yarn
+
+      # Action setup-node does not cache node_modules
+      - name: Install deps
+        run: yarn install --frozen-lockfile
+
+      - name: Check code formatting
+        run: |
+          yarn run prettier --check .
+
+      - name: Lint code
+        run: |
+          yarn run eslint .
+          yarn run tsc --noEmit
+
+      - name: Run tests
+        run: |
+          yarn test:ci
+
+      - name: Upload coverage report
+        uses: codecov/codecov-action@v3
+        with:
+          fail_ci_if_error: true
+          files: coverage/cobertura-coverage.xml
+          flags: unittests
+          verbose: true
+
+  build-docker:
+    runs-on: ubuntu-latest
+    needs: lint-and-test
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Prepare Docker image metadata
         id: meta
         uses: docker/metadata-action@v4
         with:
@@ -53,20 +91,8 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Prepare images
-        uses: docker/bake-action@v2
-        with:
-          targets: app
-          set: |
-            *.cache-from=type=gha
-            *.cache-to=type=gha
-          load: true
-          push: false
-
-      - name: Run checks
-        run: docker compose run -it --rm --user root app -- make ci
-
       - name: Build app image
+        id: build
         uses: docker/build-push-action@v3
         with:
           context: .
@@ -76,3 +102,13 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
           push: ${{ github.event_name != 'pull_request' }}
+          load: true
+
+      - name: Set up container-structure-test
+        run: |
+          sudo curl -fsSL -o /usr/bin/container-structure-test https://storage.googleapis.com/container-structure-test/latest/container-structure-test-linux-amd64
+          sudo chmod +x /usr/bin/container-structure-test
+
+      - name: Test container structure
+        run: |
+          container-structure-test test --image "${{ steps.build.outputs.imageid }}" --config container-structure-test.yaml
