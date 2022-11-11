@@ -16,7 +16,7 @@ fileExistenceTests:
 fileContentTests: []
 
 metadataTest:
-  env:
+  envVars:
     - key: "NODE_ENV"
       value: "production"
 
