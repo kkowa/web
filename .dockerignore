@@ -10,7 +10,7 @@
 !package.json
 !tsconfig.json
 !yarn.lock
-!*.secret
+!codegen.ts
 !next-env.d.ts
 !type.d.ts
 
