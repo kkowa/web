@@ -4,7 +4,7 @@ Web based UI component for kkowa. Currently this project has no name.
 
 ## 🧰 Tech Stack
 
-- **Language** Node.js 18
+- **Language** TypeScript
 
 - **Framework** [Next.js](https://nextjs.org/)
 
