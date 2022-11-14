@@ -1,6 +1,9 @@
-# kkowa/web
+# web
 
-Web based UI component for kkowa. Currently this project has no name.
+[![Build and Push](https://github.com/kkowa/web/actions/workflows/build-and-push.yml/badge.svg)](https://github.com/kkowa/web/actions/workflows/build-and-push.yml)
+[![codecov](https://codecov.io/gh/kkowa/web/branch/main/graph/badge.svg?token=3VH4JW34DB)](https://codecov.io/gh/kkowa/web)
+
+Web based UI component for kkowa.
 
 ## 🧰 Tech Stack
 
