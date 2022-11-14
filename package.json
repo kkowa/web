@@ -12,7 +12,7 @@
     "dev": "NODE_OPTIONS='--inspect' concurrently \"next dev --turbo\" \"yarn generate --watch\""
   },
   "dependencies": {
-    "@tanstack/react-query": "^4.14.1",
+    "@tanstack/react-query": "^4.16.1",
     "encoding": "^0.1.13",
     "graphql": "^16.6.0",
     "graphql-request": "^5.0.0",
