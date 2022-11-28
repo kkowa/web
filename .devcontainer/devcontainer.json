@@ -21,9 +21,7 @@
     "gruntfuggly.todo-tree",
     "redhat.vscode-yaml",
     "streetsidesoftware.code-spell-checker",
-    "tamasfe.even-better-toml",
-    "GitLab.gitlab-workflow",
-    "EditorConfig.EditorConfig",
+    "editorconfig.editorconfig",
     "GraphQL.vscode-graphql-syntax"
   ]
 }
