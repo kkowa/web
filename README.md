@@ -1,6 +1,6 @@
 # web
 
-[![Build and Push](https://github.com/kkowa/web/actions/workflows/build-and-push.yml/badge.svg)](https://github.com/kkowa/web/actions/workflows/build-and-push.yml)
+[![CI](https://github.com/kkowa/web/actions/workflows/ci.yml/badge.svg)](https://github.com/kkowa/web/actions/workflows/ci.yml)
 [![codecov](https://codecov.io/gh/kkowa/web/branch/main/graph/badge.svg?token=3VH4JW34DB)](https://codecov.io/gh/kkowa/web)
 
 Web based UI component for kkowa.
