@@ -22,7 +22,7 @@ metadataTest:
 
   exposedPorts: ["3000"]
   entrypoint: ["docker-entrypoint.sh"]
-  cmd: ["app"]
+  cmd: ["yarn", "start"]
   workdir: "/var/app"
   user: "worker:worker"
 
