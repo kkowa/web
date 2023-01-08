@@ -43,7 +43,7 @@ HEALTHCHECK --interval=10s --timeout=5s --start-period=10s --retries=5 \
     CMD ["curl", "-fsSL", "localhost:3000/"]
 
 ENTRYPOINT ["docker-entrypoint.sh"]
-CMD ["start.sh"]
+CMD ["yarn", "start"]
 
 # =============================================================================
 # Core: Build
@@ -98,7 +98,7 @@ COPY --from=build /tmp/build/node_modules ./node_modules
 COPY --from=build /tmp/build/.next ./.next
 
 # Copy script files to executable path
-COPY --chown=worker:worker --chmod=755 ./scripts/* /usr/local/bin/
+COPY --chown=worker:worker --chmod=755 ./scripts/docker-entrypoint.sh /usr/local/bin/
 
 USER worker:worker
 
@@ -114,6 +114,6 @@ RUN yarn install --frozen-lockfile && yarn cache clean --force
 COPY --from=build /tmp/build/.next ./.next
 
 # Copy script files to executable path
-COPY --chown=worker:worker --chmod=755 ./scripts/* /usr/local/bin/
+COPY --chown=worker:worker --chmod=755 ./scripts/docker-entrypoint.sh /usr/local/bin/
 
 USER worker:worker
